@@ -1,0 +1,181 @@
+{
+    "nodes": [
+        {
+            "id": "1",
+            "label": "Project Alpha",
+            "type": "PROJECT"
+        },
+        {
+            "id": "2",
+            "label": "Project Beta",
+            "type": "PROJECT"
+        },
+        {
+            "id": "3",
+            "label": "Project Gamma",
+            "type": "PROJECT"
+        },
+        {
+            "id": "4",
+            "label": "John Smith",
+            "type": "PERSON"
+        },
+        {
+            "id": "5",
+            "label": "Jane Doe",
+            "type": "PERSON"
+        },
+        {
+            "id": "6",
+            "label": "Bob Chen",
+            "type": "PERSON"
+        },
+        {
+            "id": "7",
+            "label": "Sarah Wilson",
+            "type": "PERSON"
+        },
+        {
+            "id": "8",
+            "label": "Acme Corp",
+            "type": "ORG"
+        },
+        {
+            "id": "9",
+            "label": "Engineering",
+            "type": "ORG"
+        },
+        {
+            "id": "10",
+            "label": "Product",
+            "type": "ORG"
+        },
+        {
+            "id": "11",
+            "label": "Q4 Report",
+            "type": "DOCUMENT"
+        },
+        {
+            "id": "12",
+            "label": "Budget Review",
+            "type": "DOCUMENT"
+        },
+        {
+            "id": "13",
+            "label": "Architecture Doc",
+            "type": "DOCUMENT"
+        },
+        {
+            "id": "14",
+            "label": "API Spec",
+            "type": "DOCUMENT"
+        },
+        {
+            "id": "15",
+            "label": "Roadmap 2024",
+            "type": "DOCUMENT"
+        }
+    ],
+    "edges": [
+        {
+            "source": "1",
+            "target": "4",
+            "label": "OWNED_BY"
+        },
+        {
+            "source": "2",
+            "target": "5",
+            "label": "OWNED_BY"
+        },
+        {
+            "source": "3",
+            "target": "6",
+            "label": "OWNED_BY"
+        },
+        {
+            "source": "1",
+            "target": "8",
+            "label": "CLIENT"
+        },
+        {
+            "source": "2",
+            "target": "8",
+            "label": "CLIENT"
+        },
+        {
+            "source": "4",
+            "target": "5",
+            "label": "REPORTS_TO"
+        },
+        {
+            "source": "6",
+            "target": "5",
+            "label": "REPORTS_TO"
+        },
+        {
+            "source": "7",
+            "target": "4",
+            "label": "REPORTS_TO"
+        },
+        {
+            "source": "4",
+            "target": "9",
+            "label": "MEMBER_OF"
+        },
+        {
+            "source": "6",
+            "target": "9",
+            "label": "MEMBER_OF"
+        },
+        {
+            "source": "5",
+            "target": "10",
+            "label": "MEMBER_OF"
+        },
+        {
+            "source": "7",
+            "target": "10",
+            "label": "MEMBER_OF"
+        },
+        {
+            "source": "1",
+            "target": "11",
+            "label": "CONTAINS"
+        },
+        {
+            "source": "1",
+            "target": "12",
+            "label": "CONTAINS"
+        },
+        {
+            "source": "2",
+            "target": "13",
+            "label": "CONTAINS"
+        },
+        {
+            "source": "2",
+            "target": "14",
+            "label": "CONTAINS"
+        },
+        {
+            "source": "3",
+            "target": "15",
+            "label": "CONTAINS"
+        },
+        {
+            "source": "9",
+            "target": "13",
+            "label": "AUTHORED"
+        },
+        {
+            "source": "10",
+            "target": "15",
+            "label": "AUTHORED"
+        },
+        {
+            "source": "3",
+            "target": "2",
+            "label": "DEPENDS_ON"
+        }
+    ]
+}
