@@ -1,5 +1,5 @@
 import { Box, Text, Group, useMantineTheme, alpha } from '@mantine/core';
-import { NodeProps } from '@xyflow/react';
+import { NodeProps, Handle, Position } from '@xyflow/react';
 import { IconFolder, IconUser, IconBuilding, IconFileText } from '@tabler/icons-react';
 import type { NodeType } from '../types/graph';
 
@@ -58,12 +58,14 @@ export default function GraphNode({ data, selected }: NodeProps) {
                 transition: 'all 0.2s ease',
             }}
         >
+            <Handle type="target" position={Position.Top} />
             <Group gap="xs" justify="center">
                 <Icon size={16} stroke={selected ? 2.5 : 2} style={{ color: borderColor }} />
                 <Text size="sm" fw={selected ? 600 : 500}>
                     {nodeData.label}
                 </Text>
             </Group>
+            <Handle type="source" position={Position.Bottom} />
         </Box>
     );
 }

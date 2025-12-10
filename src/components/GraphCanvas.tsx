@@ -27,6 +27,8 @@ export default function GraphCanvas({ graphData, selectedNodeId, onNodeSelect }:
         source: edge.source,
         target: edge.target,
         label: edge.label,
+        type: 'smoothstep',
+        animated: true,
     }));
 
     return (
@@ -37,6 +39,12 @@ export default function GraphCanvas({ graphData, selectedNodeId, onNodeSelect }:
                 nodeTypes={nodeTypes}
                 onNodeClick={(_, node) => onNodeSelect(node.id)}
                 fitView
+                minZoom={0.1}
+                maxZoom={4}
+                defaultEdgeOptions={{
+                    type: 'smoothstep',
+                    animated: false,
+                }}
             >
                 <Background />
                 <Controls />
