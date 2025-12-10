@@ -4,9 +4,10 @@ import { useDisclosure } from '@mantine/hooks';
 interface AppLayoutProps {
     children: React.ReactNode;
     aside?: React.ReactNode;
+    headerControls?: React.ReactNode;
 }
 
-export default function AppLayout({ children, aside }: AppLayoutProps) {
+export default function AppLayout({ children, aside, headerControls }: AppLayoutProps) {
     const [opened, { toggle }] = useDisclosure();
     const theme = useMantineTheme();
     const headerHeight = theme.other.headerHeight;
@@ -21,12 +22,11 @@ export default function AppLayout({ children, aside }: AppLayoutProps) {
             }}
         >
             <AppShell.Header role="banner">
-
-                <Flex h="100%" align="center" pl="md">
+                <Flex h="100%" align="center" justify="space-between" pl="md" pr="md">
                     <Title order={4}>Valkyrie Graph Explorer</Title>
+                    {headerControls && <div>{headerControls}</div>}
                 </Flex>
             </AppShell.Header>
-
 
             {aside && <AppShell.Aside>{aside}</AppShell.Aside>}
 
