@@ -1,7 +1,12 @@
-import { AppShell, Burger, useMantineTheme } from '@mantine/core';
+import { AppShell, Burger, Flex, Title, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+interface AppLayoutProps {
+    children: React.ReactNode;
+    aside?: React.ReactNode;
+}
+
+export default function AppLayout({ children, aside }: AppLayoutProps) {
     const [opened, { toggle }] = useDisclosure();
     const theme = useMantineTheme();
     const headerHeight = theme.other.headerHeight;
@@ -9,24 +14,21 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
         <AppShell
             header={{ height: headerHeight }}
-            navbar={{
-                width: 300,
-                breakpoint: 'sm',
-                collapsed: { mobile: !opened },
+            aside={{
+                width: 350,
+                breakpoint: 'md',
+                collapsed: { mobile: true, desktop: false },
             }}
         >
-            <AppShell.Header>
-                <Burger
-                    opened={opened}
-                    onClick={toggle}
-                    hiddenFrom="sm"
-                    size="sm"
-                />
+            <AppShell.Header role="banner">
 
-                <div>Knowledge Graph</div>
+                <Flex h="100%" align="center" pl="md">
+                    <Title order={4}>Valkyrie Graph Explorer</Title>
+                </Flex>
             </AppShell.Header>
 
-            <AppShell.Navbar>Navbar</AppShell.Navbar>
+
+            {aside && <AppShell.Aside>{aside}</AppShell.Aside>}
 
             <AppShell.Main h={`calc(100vh - ${headerHeight}px)`}>{children}</AppShell.Main>
         </AppShell>
