@@ -1,5 +1,9 @@
 import { createTheme } from "@mantine/core";
 
+export const HEADER_HEIGHT = 60;
+
 export const theme = createTheme({
-  /* Put your mantine theme override here */
+  other: {
+    headerHeight: HEADER_HEIGHT,
+  },
 });
