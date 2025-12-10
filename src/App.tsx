@@ -4,6 +4,7 @@ import AppLayout from "./components/AppLayout.tsx";
 import GraphCanvas from "./components/GraphCanvas.tsx";
 import NodeDetailsPanel from "./components/NodeDetailsPanel.tsx";
 import { getGraphData } from './data/graphData';
+import { useGraphKeyboardNavigation } from './hooks/useGraphKeyboardNavigation';
 
 export default function App() {
   const graphData = getGraphData();
@@ -13,6 +14,12 @@ export default function App() {
     () => graphData.nodes.find((node) => node.id === selectedNodeId),
     [graphData.nodes, selectedNodeId]
   );
+
+  useGraphKeyboardNavigation({
+    nodes: graphData.nodes,
+    selectedNodeId,
+    onNodeSelect: setSelectedNodeId,
+  });
 
   return (
     <AppLayout
