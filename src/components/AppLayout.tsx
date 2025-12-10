@@ -1,5 +1,4 @@
-import { AppShell, Burger, Flex, Title, useMantineTheme } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { AppShell, Flex, Title, useMantineTheme } from '@mantine/core';
 
 interface AppLayoutProps {
     children: React.ReactNode;
@@ -8,7 +7,6 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children, aside, headerControls }: AppLayoutProps) {
-    const [opened, { toggle }] = useDisclosure();
     const theme = useMantineTheme();
     const headerHeight = theme.other.headerHeight;
 
