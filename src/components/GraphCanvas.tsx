@@ -2,6 +2,7 @@ import { ReactFlow, Node, Edge, Background, Controls } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import type { GraphData } from '../types/graph';
 import GraphNode from './GraphNode';
+import { adaptGraphDataToReactFlow, getConnectedNodeIds } from '../data/reactFlowAdapter';
 
 interface GraphCanvasProps {
     graphData: GraphData;
@@ -14,21 +15,30 @@ const nodeTypes = {
 };
 
 export default function GraphCanvas({ graphData, selectedNodeId, onNodeSelect }: GraphCanvasProps) {
-    const nodes: Node[] = graphData.nodes.map((node, index) => ({
-        id: node.id,
-        data: { label: node.label, type: node.type },
-        position: { x: (index % 5) * 200, y: Math.floor(index / 5) * 100 },
-        type: 'custom',
-        selected: node.id === selectedNodeId,
+    // Use the adapter to get nodes and edges with clustered layout
+    const { nodes: adaptedNodes, edges: adaptedEdges } = adaptGraphDataToReactFlow(graphData, selectedNodeId);
+
+    // Get connected node IDs for dimming logic
+    const connectedNodeIds = getConnectedNodeIds(selectedNodeId || null, adaptedEdges);
+
+    // Apply dimming logic to nodes
+    const nodes: Node[] = adaptedNodes.map(node => ({
+        ...node,
+        style: {
+            ...node.style,
+            opacity: connectedNodeIds.size === 0 || connectedNodeIds.has(node.id) ? 1 : 0.3
+        }
     }));
 
-    const edges: Edge[] = graphData.edges.map((edge, index) => ({
-        id: edge.id || `edge-${index}`,
-        source: edge.source,
-        target: edge.target,
-        label: edge.label,
-        type: 'smoothstep',
-        animated: true,
+    // Apply dimming logic to edges
+    const edges: Edge[] = adaptedEdges.map(edge => ({
+        ...edge,
+        style: {
+            ...edge.style,
+            opacity: connectedNodeIds.size === 0 ||
+                connectedNodeIds.has(edge.source) ||
+                connectedNodeIds.has(edge.target) ? 1 : 0.3
+        }
     }));
 
     return (
